@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -15,6 +16,7 @@ const SignInForm = () => {
       email: "123",
       password: "",
     },
+    resolver: zodResolver(signInSchema),
   });
   const onSubmit = (value: FieldValues) => {
     console.log(signInSchema.parse(value));
