@@ -17,7 +17,7 @@ const SignInForm = () => {
     },
   });
   const onSubmit = (value: FieldValues) => {
-    console.log(formState);
+    console.log(signInSchema.parse(value));
   };
 
   return (
@@ -28,7 +28,7 @@ const SignInForm = () => {
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
         <input
-          type="email"
+          // type="email"
           {...register("email", {
             required: true,
           })}
