@@ -5,9 +5,13 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const signInSchema = z.object({
-  email: z.string().email({ message: "invalid email" }),
+  email: z.string().email("invalid email").min(1, {
+    message: "email required",
+  }),
   password: z.string(),
 });
+
+console.log(signInSchema);
 
 const SignInForm = () => {
   const { register, handleSubmit, formState } = useForm({
@@ -31,9 +35,7 @@ const SignInForm = () => {
         <label htmlFor="email">Email</label>
         <input
           // type="email"
-          {...register("email", {
-            required: true,
-          })}
+          {...register("email")}
           placeholder="Email"
           className="text-black"
         />
@@ -43,9 +45,7 @@ const SignInForm = () => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          {...register("password", {
-            required: true,
-          })}
+          {...register("password")}
           placeholder="Password"
           className="text-black"
         />
