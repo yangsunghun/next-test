@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 const SignInForm = () => {
   console.log("sdaasdasdsda");
 
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: {
+      email: "123",
+    },
+  });
   const onSubmit = (value: FieldValues) => {
-    console.log(value);
+    console.log(formState);
   };
 
   return (
