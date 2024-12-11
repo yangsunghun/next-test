@@ -5,7 +5,9 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const signInSchema = z.object({
-  email: z.string().email("invalid email").min(1, {
+  email: z.string()
+  .email("invalid email")
+  .min(1, {
     message: "email required",
   }),
   password: z.string(),
@@ -14,7 +16,11 @@ const signInSchema = z.object({
 console.log(signInSchema);
 
 const SignInForm = () => {
-  const { register, handleSubmit, formState } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: "onChange",
     defaultValues: {
       email: "123",
@@ -39,6 +45,7 @@ const SignInForm = () => {
           placeholder="Email"
           className="text-black"
         />
+        {errors.email?.message && <p>{errors.email?.message}</p>}
       </div>
 
       <div className="flex flex-col gap-2">
