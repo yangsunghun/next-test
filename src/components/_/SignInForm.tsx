@@ -6,6 +6,8 @@ const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  console.log("sdaasdasdsda");
+
   return (
     <form
       onSubmit={(e) => {
