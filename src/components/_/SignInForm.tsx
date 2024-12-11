@@ -1,27 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   console.log("sdaasdasdsda");
+
+  const { register, handleSubmit, formState } = useForm();
+  const onSubmit = (value: FieldValues) => {
+    console.log(value);
+  };
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-4 p-5 items-center w-full m-auto"
     >
       <div className="flex flex-col gap-2">
         <label htmlFor="email">Email</label>
         <input
-          id="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          {...register("email", {
+            required: true,
+          })}
           placeholder="Email"
           className="text-black"
         />
@@ -31,8 +32,9 @@ const SignInForm = () => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          {...register("password", {
+            required: true,
+          })}
           placeholder="Password"
           className="text-black"
         />
