@@ -3,9 +3,12 @@ import type { NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  return NextResponse.redirect(new URL("/home", request.url));
+  console.log(request.headers);
+  console.log(request.nextUrl);
+  console.log(request.cookies);
+  //return NextResponse.redirect(new URL("/home", request.url));
 }
 
 export const config = {
-  matcher: "/about/:path*",
+  matcher: "/", // 어떤 페이지에서 middleware 를 실행시킬지 결정
 };
