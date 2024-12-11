@@ -1,6 +1,12 @@
 "use client";
 import { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+
+const signInSchema = z.object({
+  email: z.string().email({ message: "invalid email" }),
+  password: z.string(),
+});
 
 const SignInForm = () => {
   const { register, handleSubmit, formState } = useForm({
